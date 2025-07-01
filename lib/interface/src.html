@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" href="style.css">
+    <script src="1.js"></script>
+    <script src="2.js"></script>
+    <script src="3.js"></script>
+    <script src="4.js"></script>
+</head>
+
+<body>
+    <div id="loading" align="center">
+        <div class="mov"></div>
+    </div>
+    <div id="player" class="w-h"></div>
+    <script type="text/javascript">
+        // 全局变量，用于存储视频URL
+        var url = "";
+
+        // 初始化函数，由Flutter调用
+        function initPlayer(videoUrl) {
+            url = videoUrl;
+            var isMobiles = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian)/i);
+            if (isMobiles) {
+                XMlayEr.XMlayEr();
+            } else {
+                XMlayEr.XMlayEr();
+            }
+        }
+
+        // 如果URL参数存在，则直接初始化（兼容原有逻辑）
+        var urlParam = decodeURIComponent(encodeURIComponent(new URLSearchParams(location.search))).replace(new RegExp(/(\\S*)url=/), "");
+        if (urlParam && urlParam !== "" && urlParam !== "undefined" && urlParam !== "null") {
+            initPlayer(urlParam);
+        }
+
+        let box = $("#player");
+        function cric(url, sp) {
+            var _iframe = document.createElement("iframe");
+            _iframe.src = url;
+            _iframe.name = sp;
+            _iframe.id = _iframe.name;
+            _iframe.width = 0;
+            _iframe.height = 0;
+            _iframe.border = "0";
+            _iframe.style.visibility = "hidden";
+            _iframe.sandbox = "allow-scripts allow-same-origin";
+            document.body.appendChild(_iframe);
+        }
+    </script>
+</body>
+
+</html>
